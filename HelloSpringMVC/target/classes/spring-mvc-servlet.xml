@@ -12,6 +12,7 @@
 	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+	
 	<!-- 扫描路径 -->
 	<context:component-scan base-package="com.springmvc.controller">
 		<context:include-filter type="annotation"
@@ -75,7 +76,7 @@
 		@DateTimeFormat ,@Controller ,@Valid ,@RequestBody ,@ResponseBody等 -->
 	<mvc:annotation-driven />
 	<!-- 静态资源配置 -->
-	<mvc:resources location="/assets/" mapping="/assets/**"></mvc:resources>
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	<!-- 视图层配置 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

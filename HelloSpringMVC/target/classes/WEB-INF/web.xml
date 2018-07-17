@@ -10,7 +10,8 @@
 		<welcome-file>/WEB-INF/view/HellloWorld.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- 配置dispatcherServlet -->
+	<!-- 配置dispatcherServlet，这是调度服务连接器-->
+	<!-- Spring集成WEB环境的通用配置，一般用于加载除Web层的Bean(如DAO、Service等),以便于与其他任何Web框架集成 -->
 	<servlet>
 		<servlet-name>spring-mvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -24,8 +25,25 @@
 		<servlet-name>spring-mvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 创建Spring的监听器 -->
+	<!-- Spring 的监听器可以通过这个上下文参数来获取spring-mvc-servlet.xml的位置 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- sitemesh过滤器定义，它是一个网页布局和修饰的框架，利用它可以将网页的内容和页面结构分离，以达到页面结构共享的目的 -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<!-- <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class> -->
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
-	<!-- 编码过滤器 -->
+	<!-- 全局过滤，字符编码 -->
 	<filter>
 		<filter-name>encode</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -40,4 +58,5 @@
 		<filter-name>encode</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 </web-app>
