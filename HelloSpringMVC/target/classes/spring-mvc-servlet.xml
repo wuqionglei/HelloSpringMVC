@@ -14,11 +14,15 @@
 	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
 	
 	<!-- 扫描路径 -->
+	<!-- 
 	<context:component-scan base-package="com.springmvc.controller">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-
+	 -->
+	
+	<context:component-scan base-package="com.springmvc">
+	</context:component-scan>
 
 	<!--数据库部分开始 -->
 

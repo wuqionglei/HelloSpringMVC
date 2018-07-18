@@ -58,36 +58,5 @@
 		<filter-name>encode</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	 <!--原来是我用了Tomcat8.0服务器使用注解的方式帮我注册了servlet了，这时候已经不需要我再web.xml手动注册了。-->	
-	<!-- Spring中提供了org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
-	这个类来实现OpenSessionInViewer的操作 -->
-	<filter>
-		<filter-name>openSessionInViewerFilter</filter-name>
-		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>openSessionInViewerFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- 用来存放分页请求的参数 -->
-	<filter>
-		<filter-name>SystemContextFilter</filter-name>
-		<filter-class>org.common.action.SystemContextFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SystemContextFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<filter>
-		<filter-name>LoginFilter</filter-name>
-		<filter-class>org.common.action.LoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/user/*</url-pattern>
-	</filter-mapping>
-	
+
 </web-app>
