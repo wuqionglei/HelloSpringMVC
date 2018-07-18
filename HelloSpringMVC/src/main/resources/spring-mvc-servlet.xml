@@ -84,5 +84,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<!--视图路由部分结束 -->
+	
+	
 </beans>
 

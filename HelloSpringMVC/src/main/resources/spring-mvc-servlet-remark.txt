@@ -1,4 +1,4 @@
-<!--原来是我用了Tomcat8.0服务器使用注解的方式帮我注册了servlet了，这时候已经不需要我再web.xml手动注册了。-->	
+    <!--原来是我用了Tomcat8.0服务器使用注解的方式帮我注册了servlet了，这时候已经不需要我再web.xml手动注册了。-->	
 	<!-- Spring中提供了org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 	这个类来实现OpenSessionInViewer的操作 -->
 	<filter>
