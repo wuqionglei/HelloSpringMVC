@@ -4,6 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
     http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
@@ -14,7 +15,9 @@
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task-4.2.xsd
 	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 	
 	<!-- 扫描路径 -->
 	<!-- 
@@ -73,6 +76,8 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate3.SpringSessionContext</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
 			</props>
 		</property>
 	</bean>
@@ -95,6 +100,12 @@
 			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
+	<aop:config>
+		<!--配置事务切点 -->
+		<aop:pointcut id="services"
+			expression="execution(* com.springmvc.service.*.*(..))" />
+		<aop:advisor pointcut-ref="services" advice-ref="txAdvice" />
+	</aop:config>
 
 	<!--数据库部分结束 -->
 
