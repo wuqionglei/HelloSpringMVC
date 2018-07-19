@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
     http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
@@ -11,7 +12,9 @@
     http://www.springframework.org/schema/mvc 
 	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
 	http://www.springframework.org/schema/task
-	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+	http://www.springframework.org/schema/task/spring-task-4.2.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	
 	<!-- 扫描路径 -->
 	<!-- 
@@ -47,6 +50,7 @@
 		<property name="maxWait" value="1000" />
 	</bean>
 
+ 
 	<!--创建Spring的SessionFactory工厂 -->
 	<!-- 如果使用的是Annotation的方式，不能使用LocalSessionFactoryBean,而应该使用 org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
 	<bean id="sessionFactory"
@@ -57,7 +61,7 @@
 
 		<!-- 设置Spring取那个包中查找相应的实体类，指定hibernate实体类映射文件 -->
 		<property name="packagesToScan">
-			<value>org.common.model</value>
+			<value>com.springmvc.model</value>
 		</property>
 
 		<!-- 指定hibernate配置属性 -->
@@ -72,6 +76,26 @@
 			</props>
 		</property>
 	</bean>
+	 
+	 <!-- 事务 -->
+	 <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 增强 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="del*" propagation="REQUIRED"/>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="query*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+
 	<!--数据库部分结束 -->
 
 	<!--视图路由部分开始 -->
