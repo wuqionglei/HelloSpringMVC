@@ -7,7 +7,8 @@ import javax.annotation.Resource;
 import com.springmvc.model.Pager;
 import com.springmvc.model.SystemContext;
 import com.springmvc.model.User;
-import org.hibernate.query.*;
+
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -42,7 +43,7 @@ public class UserDao extends HibernateDaoSupport implements IUserDao {
 	public User load(int id) {
 		return this.getHibernateTemplate().load(User.class, id);
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> list() {
 		return this.getSessionFactory().getCurrentSession().createQuery("from User").list();	//取得全部数据

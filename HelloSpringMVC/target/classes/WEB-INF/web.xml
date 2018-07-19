@@ -26,8 +26,16 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Spring集成WEB环境的通用配置，一般用于加载除Web层的Bean(如DAO、Service等),以便于与其他任何Web框架集成 -->
+	<!-- Spring 的监听器可以通过这个上下文参数来获取beans.xml的位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring-mvc-servlet.xml
+		</param-value>
+	</context-param>
+	
 	<!-- 创建Spring的监听器 -->
-	<!-- Spring 的监听器可以通过这个上下文参数来获取spring-mvc-servlet.xml的位置 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
