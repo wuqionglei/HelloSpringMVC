@@ -41,7 +41,7 @@ public class UserDao extends HibernateDaoSupport implements IUserDao {
 
 	@Override
 	public User load(int id) {
-		return this.getHibernateTemplate().load(User.class, id);
+		return this.getHibernateTemplate().get(User.class, id);
 	}
 	@SuppressWarnings("unchecked")
 	@Override
