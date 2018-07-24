@@ -1,3 +1,6 @@
+运行地址：
+http://localhost:8080/HelloSpringMVC/user/1
+
 web框架:
 spring-mvc
 
