@@ -1,4 +1,4 @@
-package com.springmvc.dao;
+package com.springmvc.dao.hibernate;
 
 import java.util.List;
 

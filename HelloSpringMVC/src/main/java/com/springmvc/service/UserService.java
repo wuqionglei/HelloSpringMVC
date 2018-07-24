@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.springmvc.dao.IUserDao;
+import com.springmvc.dao.hibernate.IUserDao;
 import com.springmvc.model.Pager;
 import com.springmvc.model.User;
 import com.springmvc.model.UserException;
