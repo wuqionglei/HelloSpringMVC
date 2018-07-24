@@ -11,27 +11,12 @@
 	</welcome-file-list>
 	
 	
-	<!-- 配置dispatcherServlet，这是调度服务连接器-->
-	<!-- Spring集成WEB环境的通用配置，一般用于加载除Web层的Bean(如DAO、Service等),以便于与其他任何Web框架集成 -->
-	<servlet>
-		<servlet-name>spring-mvc</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-mvc-servlet.xml</param-value>
-		</init-param>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>spring-mvc</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
 	<!-- Spring集成WEB环境的通用配置，一般用于加载除Web层的Bean(如DAO、Service等),以便于与其他任何Web框架集成 -->
 	<!-- Spring 的监听器可以通过这个上下文参数来获取beans.xml的位置 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+			classpath:applicationContext.xml,
 			classpath:spring-mvc-servlet.xml
 		</param-value>
 	</context-param>
@@ -40,6 +25,26 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+
+	<!-- 配置dispatcherServlet，这是调度服务连接器-->
+	<!-- Spring集成WEB环境的通用配置，一般用于加载除Web层的Bean(如DAO、Service等),以便于与其他任何Web框架集成 -->
+	<servlet>
+		<servlet-name>spring-mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				classpath:spring-mvc-servlet.xml
+			</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>spring-mvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
 	
 	<!-- Spring中提供了org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 	这个类来实现OpenSessionInViewer的操作 一定要放在web.xml文件的最开始 -->
